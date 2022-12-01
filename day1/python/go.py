@@ -25,4 +25,4 @@ class MostCalorificElf:
 
 
 if __name__ == '__main__':
-    MostCalorificElf("input.txt").return_most_calorific_elf()
+    MostCalorificElf("../input.txt").return_most_calorific_elf()
