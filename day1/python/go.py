@@ -3,26 +3,27 @@
 # Each Elf separates their own inventory from the previous elf's inventory with a blank line
 # The elves would like to know how many calories are being carried by the elf with the most calories
 
-class MostCalorificElf:
-    def __init__(self, file):
-        self.file = file
 
-    def return_most_calorific_elf(self):
-        with open(self.file, mode='r') as file:
-            all_elf_calories = file.read().splitlines()
-            all_elf_calories_sum = []
-            single_elf_calories = []
-            for item in all_elf_calories:
-                if item:
-                    single_elf_calories.append(int(item))
-                else:
-                    all_elf_calories_sum.append(sum(single_elf_calories))
-                    single_elf_calories = []
-                    continue
+def read_in_file(file):
+    with open(file, mode='r') as input:
+        input.read().splitlines()
+    return input
 
-            print(max(all_elf_calories_sum))
+def return_most_calorific_elf(input):
+    current_elf_calories = 0
+    all_elf_calories = []
+    for item in input:
+        if item:
+            current_elf_calories += int(item)
+        else:
+            all_elf_calories.append(current_elf_calories)
+            current_elf_calories = 0
 
+    return max(all_elf_calories)
 
 
+import sys
 if __name__ == '__main__':
-    MostCalorificElf("../input.txt").return_most_calorific_elf()
+    if sys.argv[1]:
+        input = read_in_file(sys.argv[1])
+        print(return_most_calorific_elf(input))
