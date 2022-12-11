@@ -6,7 +6,7 @@
 
 def read_in_file(file):
     with open(file, mode='r') as input:
-        input.read().splitlines()
+        input = input.read().splitlines()
     return input
 
 def return_most_calorific_elf(input):
